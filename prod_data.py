@@ -7,13 +7,15 @@ from key_list import key_check
 def main():
 
     paused = False
+    elapsed = time.time()
 
     while True:
         if not paused:
-            keys = key_check()
             img = screen_cap()
             cv2.imshow('test', img)
-            cv2.waitKey(1)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
         # pausing
         keys = key_check()
@@ -26,6 +28,10 @@ def main():
                 paused = True
                 print("paused...")
                 time.sleep(1)
+
+        fps = 1//(time.time() - elapsed)
+        print("{} FPS".format(fps))
+        elapsed = time.time()
 
 if __name__ == "__main__":
     main()
