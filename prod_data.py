@@ -3,6 +3,7 @@ import os
 import time
 import cv2
 from key_list import key_check
+from process_image import process_image
 
 def main():
 
@@ -15,6 +16,7 @@ def main():
         if not paused:
             # get screen capture
             img = screen_cap(hwnd=hwnd)
+            img = process_image(img)
 
             # calc fps
             fps = 1//(time.time() - elapsed)
