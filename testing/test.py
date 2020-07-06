@@ -1,5 +1,3 @@
-from screen_cap import screen_cap
-from process_image import process_image
 import cv2
 # import matplotlib.pyplot as plt
 # import cvlib as cv
@@ -11,6 +9,13 @@ import cv2
 # plt.imshow(output_image)
 # plt.show()
 
+dim = (1280, 768)
 
+img = cv2.imread("sample.JPG")
+
+roi = img[244:524, 500:780]
+
+cv2.imshow("test", roi)
+cv2.waitKey(0)
 
 

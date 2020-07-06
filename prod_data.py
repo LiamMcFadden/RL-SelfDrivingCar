@@ -18,7 +18,7 @@ def main():
             # get screen capture
             img = screen_cap(hwnd=hwnd)
             img = process_image(img, img_index)
-            if img_index == 4:
+            if img_index == 6:
                 img_index = 0
             else:
                 img_index += 1
@@ -35,6 +35,12 @@ def main():
             # handle quit
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+
+        else:
+            # handle quit
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
 
         # pausing
         keys = key_check()

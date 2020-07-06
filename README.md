@@ -13,7 +13,7 @@ Self driving car for the game rocket league.
 ### Camera Settings:
 ![Camera Settings](./img/camera_settings.JPG)
 
-### video stream controls:
+### Video Stream Controls:
 - q to quit
 - p to pause
 
