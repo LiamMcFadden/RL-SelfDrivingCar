@@ -11,12 +11,17 @@ def main():
     elapsed = time.time()
     # name of window to capture
     hwnd = "Rocket League (64-bit, DX11, Cooked)"
+    img_index = 0
 
     while True:
         if not paused:
             # get screen capture
             img = screen_cap(hwnd=hwnd)
-            img = process_image(img)
+            img = process_image(img, img_index)
+            if img_index == 4:
+                img_index = 0
+            else:
+                img_index += 1
 
             # calc fps
             fps = 1//(time.time() - elapsed)
@@ -24,7 +29,7 @@ def main():
 
             # put fps on stream
             fps = str(fps)
-            img = cv2.putText(img, "{} FPS".format(fps), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
+            img = cv2.putText(img, "{} FPS".format(fps), (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
             cv2.imshow('test', img)
 
             # handle quit
