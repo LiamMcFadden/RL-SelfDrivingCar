@@ -11,8 +11,7 @@ Self driving car for the game rocket league.
 - Movement: WASD
 
 ### Camera Settings:
-![alt text][settings]
-[settings]: ./img/'camera settings.JPG' "Camera Settings"
+![alt text](./img/'camera settings.JPG')
 
 ### video stream controls:
 - q to quit
