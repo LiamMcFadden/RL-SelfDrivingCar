@@ -3,11 +3,11 @@ import numpy as np
 import os
 
 # list of images
-imgs = os.listdir("./img")
+imgs = os.listdir("./ball-img")
 
 def process_image(img, img_index):
     # get an image from 'img' directory
-    template = cv2.imread("./img/{}".format(imgs[img_index]))
+    template = cv2.imread("./ball-img/{}".format(imgs[img_index]))
 
     # original image to draw rectangles on
     og_img = img
