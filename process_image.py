@@ -4,6 +4,7 @@ import numpy as np
 import os
 from screen_cap import screen_cap
 from time import sleep
+from centroid_tracker import CentroidTracker
 
 # list of images
 imgs = os.listdir("./ball-img")
@@ -11,6 +12,7 @@ imgs = os.listdir("./ball-img")
 # name of window for try except
 hwnd = "Rocket League (64-bit, DX11, Cooked)"
 
+# determines canny parameters based on frame
 def getCanny(img):
     v = np.median(img)
     lower = int(max(0, (1.0 - 0.23) * v))
@@ -80,6 +82,13 @@ def process_image(img, img_index):
         # convert location to be relative to og_img
         top_left = (max_loc[0] + roi_xy1[0], max_loc[1] + roi_xy1[1])
         bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
+
+
+        # object tracking with centroid_tracker
+        ct = CentroidTracker()
+        (H, W) = (None, None)
+
+
 
         cv2.rectangle(og_img, top_left, bottom_right, color=(0,0,255),
                 thickness=2, lineType=cv2.LINE_4)
