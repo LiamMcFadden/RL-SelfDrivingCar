@@ -4,7 +4,7 @@ import win32gui
 import win32ui
 import win32con
 
-def screen_cap(roi=None, hwnd = None):
+def screen_cap(hwnd = None):
     # width and height
     w = 1920
     h = 1080

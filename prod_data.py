@@ -1,59 +1,64 @@
 from screen_cap import screen_cap
-import os
-import time
 import cv2
 from key_list import key_check
-from process_image import process_image
+import random
+import time
 
-def main():
+"""
+Automatically produces a collection of images with ROI pre-defined. Images are captured every 2-6 seconds.
+"""
 
-    paused = False
-    elapsed = time.time()
-    # name of window to capture
-    hwnd = "Rocket League (64-bit, DX11, Cooked)"
-    img_index = 0
+hwnd = "Rocket League (64-bit, DX11, Cooked)"
 
-    while True:
-        if not paused:
-            # get screen capture
-            img = screen_cap(hwnd=hwnd)
-            img = process_image(img, img_index)
-            if img_index == 6:
-                img_index = 0
-            else:
-                img_index += 1
+# image number
+ball_num = 0
+# random interval
+interval = random.randint(2,6)
+elapsed = time.time()
+paused = False
 
-            # calc fps
-            fps = 1//(time.time() - elapsed)
-            elapsed = time.time()
-
-            # put fps on stream
-            fps = str(fps)
-            img = cv2.putText(img, "{} FPS".format(fps), (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 1, cv2.LINE_AA)
-            cv2.imshow('test', img)
-
-            # handle quit
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-        else:
-            # handle quit
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-
-
-        # pausing
+while True:
+    if not paused:
         keys = key_check()
-        if 'p' in keys:
-            if paused:
-                paused = False
-                print("Unpaused...")
-                time.sleep(1)
-            elif not paused:
-                paused = True
-                print("paused...")
-                time.sleep(1)
+        img = screen_cap(hwnd=hwnd)
+        cv2.imshow("data", img)
+        # quit on press of 'q'
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+        # take a screenshot on a random interval of 2-6 seconds
+        if time.time()-elapsed > interval:
+            elapsed = time.time()
+            interval = random.randint(2, 6)
+            roi_xy1 = (450, 219)
+            roi_xy2 = (830, 549)
+            img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
+            cv2.imwrite('ball-img/ball{}.png'.format(ball_num), img)
+            ball_num += 1
+
+        elif 'q' in keys:
+            break
+    elif 'q' in keys:
+        break
+
+    # pausing
+    keys = key_check()
+    if 'p' in keys:
+        if paused:
+            paused = False
+            print("Unpaused...")
+            time.sleep(1)
+        elif not paused:
+            paused = True
+            print("paused...")
+            time.sleep(1)
+
+    pass
 
 
-if __name__ == "__main__":
-    main()
+
+
+
+
+
+
