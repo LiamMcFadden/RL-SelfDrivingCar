@@ -16,12 +16,16 @@ ball_num = 0
 interval = random.randint(2,6)
 elapsed = time.time()
 paused = False
+numPics = 0
+
+print("Press q to quit, p to pause.")
+print("Running...")
 
 while True:
     if not paused:
         keys = key_check()
         img = screen_cap(hwnd=hwnd)
-        cv2.imshow("data", img)
+        # cv2.imshow("data", img)
         # quit on press of 'q'
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -33,7 +37,9 @@ while True:
             roi_xy1 = (450, 219)
             roi_xy2 = (830, 549)
             img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
-            cv2.imwrite('ball-img/ball{}.png'.format(ball_num), img)
+            cv2.imshow("data", img)
+            # cv2.imwrite('ball-img/ball{}.png'.format(ball_num), img)
+            numPics += 1
             ball_num += 1
 
         elif 'q' in keys:
@@ -55,7 +61,7 @@ while True:
 
     pass
 
-
+print("{} frames captured!".format(numPics))
 
 
 

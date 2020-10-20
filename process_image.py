@@ -23,7 +23,7 @@ def process_image(img):
     # define region of interest
     roi_xy1 = (450, 219)
     roi_xy2 = (830, 549)
-    img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
+    # img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
 
     # make the image easier to work with
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
