@@ -21,8 +21,8 @@ def process_image(img):
     og_img = img
 
     # define region of interest
-    roi_xy1 = (450, 219)
-    roi_xy2 = (830, 549)
+    roi_xy1 = (700, 246)
+    roi_xy2 = (1220, 834)
     # img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
 
     # make the image easier to work with

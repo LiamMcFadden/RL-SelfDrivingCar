@@ -34,11 +34,10 @@ while True:
         if time.time()-elapsed > interval:
             elapsed = time.time()
             interval = random.randint(2, 6)
-            roi_xy1 = (450, 219)
-            roi_xy2 = (830, 549)
+            roi_xy1 = (700, 246)
+            roi_xy2 = (1220, 834)
             img = img[roi_xy1[1]:roi_xy2[1], roi_xy1[0]:roi_xy2[0]]
-            cv2.imshow("data", img)
-            # cv2.imwrite('ball-img/ball{}.png'.format(ball_num), img)
+            cv2.imwrite('ball-img/ball{}.png'.format(ball_num), img)
             numPics += 1
             ball_num += 1
 
