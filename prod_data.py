@@ -17,6 +17,7 @@ def main():
         if not paused:
             # get screen capture
             img = screen_cap(hwnd=hwnd)
+
             img = process_image(img, img_index)
             if img_index == 6:
                 img_index = 0

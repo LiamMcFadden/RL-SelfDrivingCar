@@ -3,11 +3,11 @@ import cv2
 import win32gui
 import win32ui
 import win32con
+from pyautogui import size
 
 def screen_cap(roi=None, hwnd = None):
-    # width and height
-    w = 1920
-    h = 1080
+    # width and height of screen
+    w, h = size()
 
     if hwnd:
         hwnd = win32gui.FindWindow(None, hwnd)
@@ -42,6 +42,3 @@ def screen_cap(roi=None, hwnd = None):
     win32gui.DeleteObject(dataBitMap.GetHandle())
 
     return img
-
-
-
