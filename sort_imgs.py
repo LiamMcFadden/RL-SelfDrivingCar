@@ -28,7 +28,7 @@ def main():
 	# index of image in 'images' folder
 	i = 0
 	# path to data folder
-	data_path = '../data'
+	data_path = 'data'
 	img = cv2.imread('{}/images/img{}.jpg'.format(data_path, i))
 
 	# get number of positive and negative files already sorted

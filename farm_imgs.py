@@ -20,7 +20,7 @@ def main():
 	elapsed_time = time.time()
 
 	# get num images to not overwrite old ones
-	img_num = len(fnmatch.filter(os.listdir('../data/images'), '*.*'))
+	img_num = len(fnmatch.filter(os.listdir('data/images'), '*.*'))
 
 	while True:
 		if int(time.time() - elapsed_time) == INTERVAL:
@@ -28,7 +28,7 @@ def main():
 			img = screen_cap(hwnd=window)
 
 			# save img
-			cv2.imwrite('../data/images/img{}.jpg'.format(img_num), img)
+			cv2.imwrite('data/images/img{}.jpg'.format(img_num), img)
 			print('img{}.jpg saved...'.format(img_num))
 			
 			img_num += 1
